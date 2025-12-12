@@ -1,9 +1,9 @@
 package io.github.adainish.cobbleclearforge.obj;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +18,8 @@ public class ItemWhitelist
 
     public static Item getItemFromString(String id)
     {
-        ResourceLocation location = new ResourceLocation(id);
-        return ForgeRegistries.ITEMS.getValue(location);
+        ResourceLocation location = ResourceLocation.parse(id);
+        return BuiltInRegistries.ITEM.get(location);
     }
 
     public List<Item> convertedWhiteListedItems()

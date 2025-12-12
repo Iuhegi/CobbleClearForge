@@ -2,7 +2,7 @@ package io.github.adainish.cobbleclearforge.util;
 
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies;
 import com.cobblemon.mod.common.pokemon.Species;
-import io.github.adainish.cobbleclearforge.CobbleClearForge;
+import io.github.adainish.cobbleclearforge.CobbleClear;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -19,13 +19,13 @@ public class Util
 
     public static Species getNullableFromString(String species)
     {
-        return PokemonSpecies.INSTANCE.getByIdentifier(ResourceLocation.of("cobblemon:%sp%".replace("%sp%", species), ':'));
+        return PokemonSpecies.INSTANCE.getByIdentifier(ResourceLocation.bySeparator("cobblemon:%sp%".replace("%sp%", species), ':'));
     }
     public static Species getSpeciesFromString(String species)
     {
-        Species sp = PokemonSpecies.INSTANCE.getByIdentifier(ResourceLocation.of("cobblemon:%sp%".replace("%sp%", species), ':'));
+        Species sp = PokemonSpecies.INSTANCE.getByIdentifier(ResourceLocation.bySeparator("cobblemon:%sp%".replace("%sp%", species), ':'));
         if (sp == null)
-            sp = PokemonSpecies.INSTANCE.getByIdentifier(ResourceLocation.of("cobblemon:vulpix", ':'));
+            sp = PokemonSpecies.INSTANCE.getByIdentifier(ResourceLocation.bySeparator("cobblemon:vulpix", ':'));
         return sp;
     }
 
@@ -61,7 +61,7 @@ public class Util
     }
 
     public static void doBroadcast(String message) {
-        CobbleClearForge.getServer().getPlayerList().getPlayers().forEach(serverPlayerEntity -> {
+        CobbleClear.getServer().getPlayerList().getPlayers().forEach(serverPlayerEntity -> {
             serverPlayerEntity.sendSystemMessage(Component.literal(TextUtil.getMessagePrefix().getString() + formattedString(message)));
         });
     }
